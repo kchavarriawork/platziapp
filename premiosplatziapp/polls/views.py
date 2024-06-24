@@ -10,9 +10,8 @@ from polls.models import Question
 
 def index(request):
     question_list = Question.objects.all()
-    return render(request, "polls/index.html", {
-        "question_list": question_list
-    })
+    context = {"question_list": question_list}
+    return render(request, "polls/index.html", context)
 
 
 def details(request, question_id):

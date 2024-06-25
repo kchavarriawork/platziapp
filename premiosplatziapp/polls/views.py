@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse 
 #Se importa el modulo HttpResponse para devolver una respuesta http simple.}
 
@@ -15,7 +15,9 @@ def index(request):
 
 
 def details(request, question_id):
-    return HttpResponse(f"Estas viendo la pregunta número: {question_id}")
+    question = get_object_or_404(Question, pk=question_id)
+    context = {"question" : question}
+    return render(request, "polls/details.html", context)
 
 
 def results(request, question_id):
@@ -23,4 +25,4 @@ def results(request, question_id):
 
 
 def vote(request, question_id):
-    return HttpResponse(f"Estas votando a la pregunta número: {question_id}")
+    return HttpResponse(f"Estas vot ando a la pregunta número: {question_id}")

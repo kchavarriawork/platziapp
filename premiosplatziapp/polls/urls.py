@@ -6,13 +6,13 @@ app_name = "polls"
 
 urlpatterns = [
     #La ruta raíz de la aplicación
-    path("", views.index, name="index"),
+    path("", views.IndexView.as_view(), name="index"),
 
     #/polls/id de la pregunta
-    path("<int:question_id>/details", views.details, name="details"),
+    path("<int:pk>/details", views.DetailsView.as_view(), name="details"),
 
     #/polls/id de la pregunta/results
-    path("<int:question_id>/results", views.results, name="results"),
+    path("<int:pk>/results", views.ResultsView.as_view(), name="results"),
 
     #/polls/id de la pregunta/vote
     path("<int:question_id>/vote", views.vote, name="vote")

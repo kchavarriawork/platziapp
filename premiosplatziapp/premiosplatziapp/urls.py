@@ -16,9 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+import polls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("polls/", include("polls.urls"))
+    path("polls/", include("polls.urls")),
     #Esto quiere decir que se buscará dentro de polls el archivo urls que contiene los direccionamientos de polls.
+    path('', polls.views.IndexView.as_view(), name='home'),  # Esto establece la página principal
 ]

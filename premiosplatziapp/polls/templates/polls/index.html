@@ -1,19 +1,43 @@
+{% load static %}
 
-{% if question_list %}
-    <ul>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'polls/style.css' %}" />
+    {% comment %} <link rel="stylesheet" href="{% static 'polls/reset.css' %}" /> {% endcomment %}
+    <title>Votaciones</title>
+  </head>
+  <body>
+    <header>
+      <h1>Premios Platzi App</h1>
+    </header>
 
+    <main>
+      {% if question_list %}
+      <ul>
         {% for question in question_list %}
-        <li> 
-            <a href="{% url 'polls:details' question.id %}">{{question.question_text}} </a>
+        <li style="color: green">
+          <a href="{% url 'polls:details' question.id %}"
+            >{{ question.question_text }}</a
+          >
         </li>
         {% endfor %}
+      </ul>
+      {% else %}
+      <p>No polls are available</p>
+      {% endif %}
+    </main>
 
-    </ul>
+    <footer>
+        <a href="https://www.platzi.com"> Platzi </a>
+        <a href="#"> Contacto </a>
+        <a href="#"> ¿Quieres ser Profesor? </a>
+        <a href="#"> Política de privacidad </a>
+        <a href="#"> Sobre Nosotros </a>
+        <a href="#"> Términos y Condiciones </a>
+    </footer>
 
-{% else %}
-
-    <p>
-        No polls are available
-    </p>
-
-{% endif %}
+  </body>
+</html>
